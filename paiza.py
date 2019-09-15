@@ -1,15 +1,23 @@
-arg_list = input().split(' ')
-menu = int(arg_list[0])
-member = int(arg_list[1])
+entry_list = input().split(' ')
+entry_list.extend(input().split(' '))
 
-calorie_list = list()
-for i in range(menu):
-    calorie_list.append(int(input()))
+time_list = input().split(' ')
+final_list = list()
+if time_list[int(entry_list[0]) - 1] < time_list[int(entry_list[1]) - 1]:
+    final_list.append(int(entry_list[0]))
+else:
+    final_list.append(int(entry_list[1]))
 
-for i in range(member):
-    order_list = list()
-    input_order_list = input().split(' ')
-    for j in range(len(input_order_list)):
-        order_list.append(int(int(input_order_list[j]) * calorie_list[j] / 100))
-    sum_str = str(sum(order_list))
-    print(sum_str)
+if time_list[int(entry_list[2]) - 1] < time_list[int(entry_list[3]) - 1]:
+    final_list.append(int(entry_list[2]))
+else:
+    final_list.append(int(entry_list[3]))
+final_list.sort()
+
+final_time_list = input().split(' ')
+if final_time_list[0] < final_time_list[1]:
+    print(final_list[0])
+    print(final_list[1])
+else:
+    print(final_list[1])
+    print(final_list[0])
