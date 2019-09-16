@@ -1,15 +1,19 @@
-arg_list = input().split(' ')
-menu = int(arg_list[0])
-member = int(arg_list[1])
+# coding=utf-8
+chipper_num = int(input())
+encrypted_str = input()
 
-calorie_list = list()
-for i in range(menu):
-    calorie_list.append(int(input()))
+decrypted_str = list()
+for i in range(len(encrypted_str)):
+    if (i + 1) % 2 == 1:  # 奇数
+        tmp_chipper_num = chipper_num * -1
+    else:
+        tmp_chipper_num = chipper_num
+    tmp_ord_num = ord(encrypted_str[i]) + tmp_chipper_num
+    if tmp_ord_num < ord('A'):
+        decrypted_str.append(chr(ord('Z') - (ord('A') - tmp_ord_num - 1)))
+    elif tmp_ord_num > ord('Z'):
+        decrypted_str.append(chr(ord('A') + (tmp_ord_num - ord('Z') - 1)))
+    else:
+        decrypted_str.append(chr(tmp_ord_num))
 
-for i in range(member):
-    order_list = list()
-    input_order_list = input().split(' ')
-    for j in range(len(input_order_list)):
-        order_list.append(int(int(input_order_list[j]) * calorie_list[j] / 100))
-    sum_str = str(sum(order_list))
-    print(sum_str)
+print(''.join(decrypted_str))
