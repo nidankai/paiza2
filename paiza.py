@@ -1,19 +1,18 @@
-# coding=utf-8
-chipper_num = int(input())
-encrypted_str = input()
+receipt_num = int(input())
+date_list = list()
+fee_list = list()
+for i in range(receipt_num):
+    receipt_list = input().split(' ')
+    date_list.append(receipt_list[0])
+    fee_list.append(int(receipt_list[1]))
 
-decrypted_str = list()
-for i in range(len(encrypted_str)):
-    if (i + 1) % 2 == 1:  # 奇数
-        tmp_chipper_num = chipper_num * -1
-    else:
-        tmp_chipper_num = chipper_num
-    tmp_ord_num = ord(encrypted_str[i]) + tmp_chipper_num
-    if tmp_ord_num < ord('A'):
-        decrypted_str.append(chr(ord('Z') - (ord('A') - tmp_ord_num - 1)))
-    elif tmp_ord_num > ord('Z'):
-        decrypted_str.append(chr(ord('A') + (tmp_ord_num - ord('Z') - 1)))
-    else:
-        decrypted_str.append(chr(tmp_ord_num))
+point = 0
+for i in range(receipt_num):
+    magnification = 0.01
+    if '3' in date_list[i]:
+        magnification = 0.03
+    elif '5' in date_list[i]:
+        magnification = 0.05
+    point += int(fee_list[i] * magnification)
 
-print(''.join(decrypted_str))
+print(point)
