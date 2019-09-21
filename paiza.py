@@ -1,18 +1,9 @@
-receipt_num = int(input())
-date_list = list()
-fee_list = list()
-for i in range(receipt_num):
-    receipt_list = input().split(' ')
-    date_list.append(receipt_list[0])
-    fee_list.append(int(receipt_list[1]))
+arg_list = input().split(' ')
+amount = int(arg_list[0])
+fresh_sold_per = int(arg_list[1])
+processed_sold_per = int(arg_list[2])
 
-point = 0
-for i in range(receipt_num):
-    magnification = 0.01
-    if '3' in date_list[i]:
-        magnification = 0.03
-    elif '5' in date_list[i]:
-        magnification = 0.05
-    point += int(fee_list[i] * magnification)
+remain_amount = amount - amount * (fresh_sold_per * 0.01)
+remain_amount = remain_amount - remain_amount * (processed_sold_per * 0.01)
 
-print(point)
+print(remain_amount)
