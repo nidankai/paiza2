@@ -1,9 +1,15 @@
-arg_list = input().split(' ')
-amount = int(arg_list[0])
-fresh_sold_per = int(arg_list[1])
-processed_sold_per = int(arg_list[2])
+typhoon_pos_list = input().split(' ')
+person_num = int(input())
 
-remain_amount = amount - amount * (fresh_sold_per * 0.01)
-remain_amount = remain_amount - remain_amount * (processed_sold_per * 0.01)
+center_x = int(typhoon_pos_list[0])
+center_y = int(typhoon_pos_list[1])
+center_radius = int(typhoon_pos_list[2])
+wind_radius = int(typhoon_pos_list[3])
 
-print(remain_amount)
+for i in range(person_num):
+    person_pos_list = input().split(' ')
+    tmp_param = (int(person_pos_list[0]) - center_x) ** 2 + (int(person_pos_list[1]) - center_y) ** 2
+    if center_radius ** 2 <= tmp_param <= wind_radius ** 2:
+        print('yes')
+    else:
+        print('no')
