@@ -1,15 +1,34 @@
-typhoon_pos_list = input().split(' ')
-person_num = int(input())
+today = input().split(' ')
+event_date = input().split(' ')
 
-center_x = int(typhoon_pos_list[0])
-center_y = int(typhoon_pos_list[1])
-center_radius = int(typhoon_pos_list[2])
-wind_radius = int(typhoon_pos_list[3])
+for i in range(len(today)):
+    today[i] = int(today[i])
+for i in range(len(event_date)):
+    event_date[i] = int(event_date[i])
 
-for i in range(person_num):
-    person_pos_list = input().split(' ')
-    tmp_param = (int(person_pos_list[0]) - center_x) ** 2 + (int(person_pos_list[1]) - center_y) ** 2
-    if center_radius ** 2 <= tmp_param <= wind_radius ** 2:
-        print('yes')
+remainder = int(today[0]) % 4
+during_year = 0
+if remainder == 0:
+    during_year = 1
+elif remainder == 1:
+    during_year = 0
+elif remainder == 2:
+    during_year = 3
+elif remainder == 3:
+    during_year = 2
+
+during_month = 0
+if during_year != 0:
+    if today[1] <= event_date[0]:  # 月
+        during_month = 13 * during_year + (event_date[0] - today[1])
     else:
-        print('no')
+        during_month = 13 * (during_year - 1) + (13 - today[1]) + event_date[0]
+else:
+    during_month = (event_date[0] - today[1])
+
+during_day = 0
+if today[2] <= event_date[1]:  # 日
+    during_day = during_month * 13 + (int(today[1]) - int(event_date[0]))
+else:
+    during_day = (during_month - 1) * (13 - int(today[1])) + int(event_date[0])
+print(during_day)
