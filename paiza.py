@@ -1,31 +1,21 @@
-input_arg = input().split(' ')
-fish_num = int(input_arg[0])
-poi_num = int(input_arg[1])
-poi_life = int(input_arg[2])
+man_num = int(input())
+man_names = input().split(' ')
 
-fish_list = list()
-for i in range(fish_num):
-    fish_list.append(int(input()))
+book_num = int(input())
+man_book_list = list()
+for i in range(book_num):
+    input_list = input().split(' ')
+    dic = {"man_name": input_list[0], "book_price": int(input_list[1])}
+    man_book_list.append(dic)
 
-scooped_count = 0
-now_poi_life = poi_life
-poi_count = poi_num
-for fish in fish_list:
-    if fish < now_poi_life:
-        now_poi_life -= fish
-        scooped_count += 1
-    else:
-        poi_count -= 1
-        if poi_count == 0:
-            break
-        now_poi_life = poi_life
-        if fish < now_poi_life:
-            now_poi_life -= fish
-            scooped_count += 1
-        else:
-            poi_count -= 1
-            if poi_count == 0:
-                break
-            now_poi_life = poi_life
+result_dic = dict()
+for num, man_name in enumerate(man_names):
+    result_dic[man_name] = 0
 
-print(scooped_count)
+for man_book in man_book_list:
+    result_dic[man_book["man_name"]] += man_book["book_price"]
+
+score_sorted = sorted(result_dic.items(), key=lambda x:x[1], reverse=True)
+for value in score_sorted:
+    print(value[0])
+
