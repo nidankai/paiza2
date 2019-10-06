@@ -1,21 +1,18 @@
-man_num = int(input())
-man_names = input().split(' ')
+flower_num = int(input())
+flowering_days = list()
+for i in range(flower_num):
+    flower_list = input().split(' ')
+    flowering_days.append(int(flower_list[0]) + int(flower_list[1]))
+flowering_days.sort()
 
-book_num = int(input())
-man_book_list = list()
-for i in range(book_num):
-    input_list = input().split(' ')
-    dic = {"man_name": input_list[0], "book_price": int(input_list[1])}
-    man_book_list.append(dic)
+result_dict = dict()
+for day in flowering_days:
+    result_dict[str(day)] = 0
 
-result_dic = dict()
-for num, man_name in enumerate(man_names):
-    result_dic[man_name] = 0
+for day in flowering_days:
+    result_dict[str(day)] += 1
 
-for man_book in man_book_list:
-    result_dic[man_book["man_name"]] += man_book["book_price"]
-
-score_sorted = sorted(result_dic.items(), key=lambda x:x[1], reverse=True)
-for value in score_sorted:
-    print(value[0])
-
+for key, value in result_dict.items():
+    if value == max(result_dict.values()):
+        print(key)
+        break
