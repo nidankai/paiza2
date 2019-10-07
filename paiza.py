@@ -1,18 +1,15 @@
-flower_num = int(input())
-flowering_days = list()
-for i in range(flower_num):
-    flower_list = input().split(' ')
-    flowering_days.append(int(flower_list[0]) + int(flower_list[1]))
-flowering_days.sort()
+dislike_num = input()
+room_total = int(input())
+room_list = list()
+for i in range(room_total):
+    room_list.append(input())
 
-result_dict = dict()
-for day in flowering_days:
-    result_dict[str(day)] = 0
-
-for day in flowering_days:
-    result_dict[str(day)] += 1
-
-for key, value in result_dict.items():
-    if value == max(result_dict.values()):
-        print(key)
-        break
+flag = False
+for num in room_list:
+    if dislike_num in num:
+        pass
+    else:
+        print(num)
+        flag = True
+if flag is False:
+    print('none')
