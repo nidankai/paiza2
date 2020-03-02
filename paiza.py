@@ -1,15 +1,17 @@
-dislike_num = input()
-room_total = int(input())
-room_list = list()
-for i in range(room_total):
-    room_list.append(input())
+budget, rides = input().split(' ')
+budget = int(budget)
+rides = int(rides)
+price_list = list()
+for i in range(rides):
+    price = int(input())
+    price_list.append(price)
 
-flag = False
-for num in room_list:
-    if dislike_num in num:
-        pass
+point = 0
+for price in price_list:
+    if point >= price:
+        point -= price
     else:
-        print(num)
-        flag = True
-if flag is False:
-    print('none')
+        budget -= price
+        point += price * 0.1
+    print(budget, int(point))
+
